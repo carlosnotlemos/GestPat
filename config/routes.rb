@@ -1,17 +1,41 @@
 Rails.application.routes.draw do
   devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  devise_scope :user do
-    root to: "devise/sessions#new"
+
+  # Rotas para usuários autenticados
+  authenticated :user do
+    root to: "rails/welcome#index", as: :authenticated_root
+
+    # PROFESSOR E FERRAMENTARIA APENAS FAZEM INVENTARIOS!
+    %w[professor ferramentaria].each do |inventory|
+      namespace inventory do
+        resources :inventories, only: %i[ index new create ], path: "inventario"
+      end
+    end
+
+    # ASSISTENTE E ESTÁGIARIO APENAS VERIFICAM E ATESTAM OS INVENTÁRIOS
+    %w[assistente estagiario].each do |analist|
+      namespace analist do
+        resources :inventories, only: %i[ index edit update ], path: "inventario"
+      end
+    end
+
+    # GESTOR E COORDENADOR ANALISAM , EXCLUEM OU ADICIONAM USUARIOS OU PATRIMONIOS
+    %w[coordenador gestor].each do |admin|
+      namespace admin do
+        resources :inventories, only: %i[ index edit update destroy ], path: "inventario"
+        resources :assets, path: "patrimonio"
+        resources :users, path: "usuarios"
+      end
+    end
   end
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+
+  # Rotas para usuários não autenticados
+  devise_scope :user do
+    unauthenticated do
+      root to: "devise/sessions#new", as: :unauthenticated_root
+    end
+  end
+
+  # Health check do Rails
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
