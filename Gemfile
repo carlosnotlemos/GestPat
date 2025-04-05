@@ -57,3 +57,5 @@ group :development do
 end
 
 gem "devise", "~> 4.9"
+gem "haml-rails"
+gem "psych", "5.2.3"
