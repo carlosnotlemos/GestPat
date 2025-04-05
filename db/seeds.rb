@@ -8,12 +8,12 @@ InventoryAsset.destroy_all
 FoundItem.destroy_all
 
 # Criando usuários
-ferramentaria = User.create!(email: "ferramentaria@example.com", password: "senha123", name: "Ferramentaria", role: 4)
 professor = User.create!(email: "professor@example.com", password: "senha123", name: "Professor João", role: 0)
-assistente = User.create!(email: "assistente@example.com", password: "senha123", name: "Assistente Maria", role: 2)
-estagiario = User.create!(email: "estagiario@example.com", password: "senha123", name: "Estagiário Lucas", role: 1)
-coordenador = User.create!(email: "coordenador@example.com", password: "senha123", name: "Coordenador Ana", role: 3)
-gestor = User.create!(email: "gestor@example.com", password: "senha123", name: "Gestor Pedro", role: 4)
+ferramentaria = User.create!(email: "ferramentaria@example.com", password: "senha123", name: "Ferramentaria", role: 1)
+estagiario = User.create!(email: "estagiario@example.com", password: "senha123", name: "Estagiário Lucas", role: 2)
+assistente = User.create!(email: "assistente@example.com", password: "senha123", name: "Assistente Maria", role: 3)
+coordenador = User.create!(email: "coordenador@example.com", password: "senha123", name: "Coordenador Ana", role: 4)
+gestor = User.create!(email: "gestor@example.com", password: "senha123", name: "Gestor Pedro", role: 5)
 
 # Criando salas
 sala_101 = Room.create!(name: "Sala 101")
