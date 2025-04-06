@@ -6,5 +6,5 @@ class Inventory < ApplicationRecord
   belongs_to :user
   belongs_to :room
 
-  validates :date, presence: true
+  validates :checked_at, presence: true
 end
