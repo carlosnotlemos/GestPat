@@ -1,0 +1,7 @@
+.container.text-center.mt-5
+  %h1.text-warning Página de Testes
+  %p.lead Esta página é apenas para testes temporários.
+
+  %hr/
+
+  = button_to "Sair", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger mt-4"
