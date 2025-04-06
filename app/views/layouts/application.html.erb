@@ -17,12 +17,16 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
+    <%# Carregando o arquivo css do bootstrap (para funcionamento offline) %>
+    <link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <%= yield %>
+    <%# Importmap passado aqui para um fluxo ordenado.  %>
+    <%= javascript_importmap_tags %>
   </body>
 </html>
