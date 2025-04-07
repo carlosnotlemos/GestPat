@@ -1,0 +1,8 @@
+.d-flex
+  = render "layouts/sidebar"
+
+  .flex-grow-1
+    = render "layouts/navbar"
+
+    .container-fluid.mt-4
+      = yield
