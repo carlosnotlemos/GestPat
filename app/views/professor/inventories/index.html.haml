@@ -1,3 +1,17 @@
-%h2.text-center.text-danger Ola você está logado como professor
+%h2.text-center.text-danger Ola você está logado como #{current_user.name}
 
+.container
+  .content.m-2
+    - @inventories.each do |inventory|
+      .card.mb-3.p-3.border
+        %h5 Sala: #{inventory.room.name}
+        %p Verificado em: #{inventory.checked_at.strftime("%d/%m/%Y %H:%M")}
+
+        - if inventory.inventory_assets.any?
+          %h6.mt-3 Verificação do Professor:
+          %ul
+            - inventory.inventory_assets.each do |inv_asset|
+              %li= "Patrimonio: #{inv_asset.asset.asset_type.name} - Quantidade: #{inv_asset.counted_quantity}"
+        - else
+          %p Nenhum ativo registrado nesse inventário.
 = button_to "Desconectar", destroy_user_session_path, method: :delete, class: "btn btn-danger"
