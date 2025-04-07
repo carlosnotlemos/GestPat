@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case resource.role
     when "professor"
-      professor_inventories_path
+      professor_inventarios_path
     when "ferramentaria"
       authenticated_root_path
     else
