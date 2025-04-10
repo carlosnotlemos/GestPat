@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     namespace :professor do
       get "novo_inventario", to: "inventories#new", as: :novo_inventario
       get "inventarios", to: "inventories#index", as: :inventarios
+      post "inventarios", to: "inventories#create"
     end
 
     namespace "ferramentaria" do
