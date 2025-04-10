@@ -15,7 +15,7 @@
     / CSS Bootstrap Offline
     %link{ rel: "stylesheet", href: "/plugins/bootstrap/bootstrap.min.css" }
 
-    / Seus styles em app/assets/stylesheets
+    / Styles em app/assets/stylesheets
     = stylesheet_link_tag :app, "data-turbo-track": "reload"
     = yield :head
 
@@ -24,4 +24,5 @@
       = render template: "layouts/principal"
     - else
       = yield
-    = javascript_importmap_tags
+    / INCLUIR JS do Bootstrap
+    = javascript_include_tag "bootstrap.bundle.min", "data-turbo-track": "reload"
