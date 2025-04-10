@@ -1,10 +1,12 @@
 / Sidebar responsivo
-%nav#sidebar.collapse.d-md-block.bg-dark.text-white.flex-shrink-0.p-3{ style: "width: 250px; height: 100vh;" }
-  %h4.text-center.mt-3 GestPat v1.0
-  %ul.nav.nav-pills.flex-column.mb-auto.mt-4
-    %li.nav-item
-      = link_to "Histórico", professor_inventarios_path, class: "nav-link text-white"
-    %li.nav-item
-      = link_to "Novo inventário", professor_novo_inventario_path, class: "nav-link text-white"
-    %li.nav-item
-      = link_to "Configurações", "#", class: "nav-link text-white"
+.collapse.collapse-horizontal.show#sidebarCollapse
+  %nav.bg-dark.text-white.flex-shrink-0.p-3{ style: "width: 250px; height: 100vh;" }
+    %h4.text-center.mt-3 gestpat v1.0
+    %hr/
+    %ul.nav.nav-pills.flex-column.mb-auto.mt-4
+      %li.nav-item
+        = link_to "histórico", professor_inventarios_path, class: "nav-link text-white"
+      %li.nav-item
+        = link_to "novo inventário", professor_novo_inventario_path, class: "nav-link text-white"
+      %li.nav-item
+        = link_to "configurações", "#", class: "nav-link text-white"

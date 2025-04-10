@@ -1,4 +1,12 @@
 / Navbar
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+%nav.navbar.navbar-expand-lg.bg-light
   .container-fluid
-    %span.navbar-brand.mb-0.h1= "Olá #{current_user.name}" 
+    .content
+      %button.btn.btn-light{
+        type: "button",
+        "data-bs-toggle" => "collapse",
+        "data-bs-target" => "#sidebarCollapse",
+        "aria-expanded" => "false",
+        "aria-controls" => "sidebarCollapse"
+      }= image_tag "button-collapse-dark.png", alt: "menu", style: "width: 24px; height: 24px;"
+      %span.navbar-brand.h1.align-middle= "Olá #{current_user.name}"
