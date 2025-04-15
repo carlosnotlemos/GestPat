@@ -1,17 +1,54 @@
-%h2.text-center.text-danger Ola você está logado como #{current_user.name}
+%main.container
+  %h1 WORKSPACE
+  .card.mt-4
+    .card-body
+      %h5 Inventarios do #{current_user.name}
+      %table.table.mt-4.table-hover
+        %thead.table-secondary
+          %tr
+            %th ID
+            %th Nome
+            %th Sala
+            %th Data
+            %th Situação
+        %tbody
+          - @inventories.each do |inventario|
+            %tr
+              %td= inventario.id
+              %td= inventario.user.name
+              %td= inventario.room.name
+              %td= inventario.checked_at.strftime('%d/%m/%Y')
+              %td Aprovado
 
-.container
-  .content.m-2
-    - @inventories.each do |inventory|
-      .card.mb-3.p-3.border
-        %h5 Sala: #{inventory.room.name}
-        %p Verificado em: #{inventory.checked_at.strftime("%d/%m/%Y %H:%M")}
-
-        - if inventory.inventory_assets.any?
-          %h6.mt-3 Verificação do Professor:
-          %ul
-            - inventory.inventory_assets.each do |inv_asset|
-              %li= "Patrimonio: #{inv_asset.asset.asset_type.name} - Quantidade: #{inv_asset.counted_quantity}"
-        - else
-          %p Nenhum ativo registrado nesse inventário.
-= button_to "Desconectar", destroy_user_session_path, method: :delete, class: "btn btn-danger"
+%main.container.mt-5
+  %h1 INFORMATIVOS
+  .card.mt-4
+    .card-body
+      %h5 Inventarios do #{current_user.name}
+      %table.table.mt-4.table-hover
+        %thead.table-secondary
+          %tr
+            %th ID
+            %th Nome
+            %th Sala
+            %th Data
+            %th Situação
+        %tbody
+          %tr
+            %td 1
+            %td Carlos
+            %td Sala 100
+            %td 12/04/2025
+            %td Aprovado
+          %tr
+            %td 1
+            %td Carlos
+            %td Sala 100
+            %td 12/04/2025
+            %td Reprovado
+          %tr
+            %td 1
+            %td Carlos
+            %td Sala 100
+            %td 12/04/2025
+            %td Aguardando
