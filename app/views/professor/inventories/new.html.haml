@@ -1,15 +1,17 @@
 %main.container
   %h2 Novo Inventario
-  .card.mt-4
-    .card-header
-      %h4 Escolha a sala
-      = form_with url: professor_novo_inventario_path, method: :get, data: { turbo_frame: "inventory_table" } do |f|
-        = f.label "Escolha a sala"
-        = f.select :room_id, @rooms.map { |room| [room.name, room.id] }, { prompt: "Selecione uma sala" }, { onchange: "this.form.requestSubmit();" }
-  
-  .card.mt-4
-    .card-body
-      %h5 Inventarios do #{current_user.name}
+  .bootstrap-table
+    .fixed-table-toolbar.mb-4
+      .align-items-center
+        .float-end.mb-2
+          = form_with url: professor_novo_inventario_path, method: :get, data: { turbo_frame: "inventory_table" } do |f|
+            = select_tag :room_id,
+              options_for_select(@rooms.map { |room| [room.name, room.id] }, params[:room_id]),
+              prompt: "Selecione uma sala",
+              class: "form-select",
+              onchange: "this.form.requestSubmit();"
+
+    .fixed-table-container
       %turbo-frame{id: "inventory_table"}
         %table.table.mt-4.table-hover
           %thead.table-secondary
@@ -30,4 +32,4 @@
                   %td Aprovado
             - else
               %tr
-                %td{ colspan: 5 } Escolha uma sala para visualizar os ativos 
+                %td{ colspan: 5 , class:"text-center fw-bold"} Escolha uma sala para visualizar os ativos 

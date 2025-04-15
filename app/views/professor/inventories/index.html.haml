@@ -18,7 +18,8 @@
               %td= inventario.user.name
               %td= inventario.room.name
               %td= inventario.checked_at.strftime('%d/%m/%Y')
-              %td Aprovado
+              %td 
+                %span.badge.bg-success Aprovado
 
 %main.container.mt-5
   %h1 INFORMATIVOS
@@ -39,16 +40,19 @@
             %td Carlos
             %td Sala 100
             %td 12/04/2025
-            %td Aprovado
+            %td 
+              %span.badge.bg-success Aprovado
           %tr
             %td 1
             %td Carlos
             %td Sala 100
             %td 12/04/2025
-            %td Reprovado
+            %td 
+              %span.badge.bg-danger Reprovado
           %tr
             %td 1
             %td Carlos
             %td Sala 100
             %td 12/04/2025
-            %td Aguardando
+            %td 
+              %span.badge.bg-secondary Aguardando
