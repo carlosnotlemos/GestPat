@@ -1,7 +1,7 @@
 module Professor
   class InventoriesController < Inventories::BaseController
     def index
-    @inventories = current_user.inventories
+      @inventories = current_user.inventories
     end
 
     private
