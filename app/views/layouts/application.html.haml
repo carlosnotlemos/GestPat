@@ -16,10 +16,10 @@
     %link{ rel: "stylesheet", href: "/plugins/bootstrap/bootstrap.min.css" }
 
     / Styles em app/assets/stylesheets
-    = stylesheet_link_tag :app, "data-turbo-track": "reload"
+    = stylesheet_link_tag :app , "data-turbo-track": "reload"
     = yield :head
 
-  %body
+  %body.bg-light
     - if user_signed_in?
       = render template: "layouts/principal"
     - else
