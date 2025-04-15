@@ -5,6 +5,11 @@ module Inventories
 
     def new
       @inventory = Inventory.new
+      @rooms = Room.all
+
+      if params[:room_id].present?
+        @assets = Asset.where(room_id: params[:room_id])
+      end
     end
 
     def create
