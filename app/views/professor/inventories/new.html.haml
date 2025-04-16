@@ -4,7 +4,7 @@
     .fixed-table-toolbar.mb-4
       .align-items-center
         .float-end.mb-2
-          = form_with url: professor_novo_inventario_path, method: :get, data: { turbo_frame: "inventory_table" } do |f|
+          = form_with url: professor_novo_inventario_path, method: :get, data: { turbo_frame: "inventory_table" } do |r|
             = select_tag :room_id,
               options_for_select(@rooms.map { |room| [room.name, room.id] }, params[:room_id]),
               prompt: "Selecione uma sala",
@@ -13,23 +13,30 @@
 
     .fixed-table-container
       %turbo-frame{id: "inventory_table"}
-        %table.table.mt-4.table-hover
-          %thead.table-secondary
-            %tr
-              %th ID
-              %th Patrimonio
-              %th Quantidade
-              %th Data
-              %th Situação
-          %tbody
-            - if params[:room_id].present?
-              - @assets.each do |room_asset|
-                %tr
-                  %td= room_asset.id
-                  %td= room_asset.asset_type.name
-                  %td= room_asset.quantity
-                  %td= room_asset.created_at.strftime('%d/%m/%Y')
-                  %td Aprovado
-            - else
+        = form_with model: @inventory, url: professor_inventarios_path, method: :post do |a|
+          = a.hidden_field :room_id, value: params[:room_id]
+          %table.table.mt-4.table-hover
+            %thead.table-secondary
               %tr
-                %td{ colspan: 5 , class:"text-center fw-bold"} Escolha uma sala para visualizar os ativos 
+                %th ID
+                %th Patrimonio
+                %th Quantidade na sala
+                %th Data
+                %th Quantidade observada
+            %tbody
+              - if params[:room_id].present?
+                - @assets.each do |room_asset|
+                  %tr
+                    %td= room_asset.id
+                    %td= room_asset.asset_type.name
+                    %td= room_asset.quantity
+                    %td= room_asset.created_at.strftime('%d/%m/%Y')
+                    %td
+                      .field-number
+                        = number_field_tag "assets[#{room_asset.id}]", nil, min: 0, step: 1,
+                          class: "form-control", required: true
+              - else
+                %tr
+                  %td{ colspan: 5 , class:"text-center fw-bold"} Escolha uma sala para visualizar os ativos 
+          %br
+          = a.submit "Criar Inventário", class: "btn btn-primary"  
