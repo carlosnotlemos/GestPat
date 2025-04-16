@@ -14,10 +14,17 @@ module Inventories
 
     def create
       @inventory = Inventory.new(inventory_params)
-      # Identificação do usuário deve ser passada aqui por segurança.
       @inventory.user = current_user
+      @inventory.checked_at = Time.current
 
       if @inventory.save
+        params[:assets].each do |asset_id, counted_quantity|
+          InventoryAsset.create!(
+            inventory_id: @inventory.id,
+            asset_id: asset_id,
+            counted_quantity: counted_quantity
+          )
+        end
         redirect_to after_create_path, notice: "Inventario criado com sucesso."
       else
         render :new, status: :unprocessable_entity
@@ -27,7 +34,7 @@ module Inventories
     private
 
     def inventory_params
-      params.require(:inventory).permit(:room_id, :checked_at)
+      params.require(:inventory).permit(:room_id, assets: {})
     end
 
     def after_create_path
