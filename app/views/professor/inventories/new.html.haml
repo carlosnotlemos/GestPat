@@ -15,7 +15,7 @@
       %turbo-frame{id: "inventory_table"}
         = form_with model: @inventory, url: professor_inventarios_path, method: :post do |a|
           = a.hidden_field :room_id, value: params[:room_id]
-          %table.table.mt-4.table-hover
+          %table.table.mt-4.table-hover.text-center{ style: "border: 1px solid #dee2e6; border-radius: 0.25rem;" }
             %thead.table-secondary
               %tr
                 %th ID
@@ -32,11 +32,48 @@
                     %td= room_asset.quantity
                     %td= room_asset.created_at.strftime('%d/%m/%Y')
                     %td
-                      .field-number
+                      .d-flex.justify-content-center
                         = number_field_tag "assets[#{room_asset.id}]", nil, min: 0, step: 1,
-                          class: "form-control", required: true
+                          class: "form-control", style: "max-width: 100px;", required: true
+                %tr
+                  .d-flex.justify-content-between
+                    %tr
+                      %td{colspan: 5}
+                        .d-flex.justify-content-between.align-items-center
+                          %div
+                            %button{type: "button", id: "add-found-item", class: "btn btn-success"} + Adicionar item
+                          %div.found-items-fields
+                            #found-items
+                          = a.submit "Salvar", class: "btn btn-outline-secondary"
               - else
                 %tr
                   %td{ colspan: 5 , class:"text-center fw-bold"} Escolha uma sala para visualizar os ativos 
-          %br
-          = a.submit "Criar Inventário", class: "btn btn-primary"  
+:javascript
+  document.addEventListener("DOMContentLoaded", function(){
+    const addFoundItemButton = document.getElementById("add-found-item");
+    const foundItemsContainer = document.getElementById("found-items");
+    let itemCount = 0;
+
+    addFoundItemButton.addEventListener("click", function(){
+      itemCount++;
+      const foundItemHtml = `
+        <div class="found-item" id="found-item-${itemCount}">
+          <div class="input-group mb-3">
+            <input type="text" name="founditems[${itemCount}][description]" class="form-control" placeholder="Descrição do item" required>
+            <input type="number" name="founditems[${itemCount}][quantity]" class="form-control " placeholder="Quantidade" min="0" required>
+            <button type="button" class="btn btn-danger remove-found-item" data-item-id="${itemCount}">-</button>
+          </div>
+        </div>
+      `;
+
+      foundItemsContainer.insertAdjacentHTML("beforeend", foundItemHtml);
+    });
+
+    foundItemsContainer.addEventListener("click", function(event){
+      if (event.target && event.target.classList.contains("remove-found-item")){
+        const itemId = event.target.dataset.itemId;
+        const itemElement = document.getElementById(`found-item-${itemId}`);
+        itemElement.remove();
+      }
+    });
+  });
