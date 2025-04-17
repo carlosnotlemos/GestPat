@@ -25,6 +25,19 @@ module Inventories
             counted_quantity: counted_quantity
           )
         end
+
+        if params[:founditems].present?
+          params[:founditems].each do |_key, founditem_params|
+            founditem_desc = founditem_params[:description]
+            founditem_quant = founditem_params[:quantity]
+
+            FoundItem.create!(
+              inventory_id: @inventory.id,
+              description: founditem_desc,
+              quantity: founditem_quant
+            )
+          end
+        end
         redirect_to after_create_path, notice: "Inventario criado com sucesso."
       else
         render :new, status: :unprocessable_entity
