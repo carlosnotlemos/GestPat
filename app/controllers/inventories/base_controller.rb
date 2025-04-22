@@ -26,8 +26,8 @@ module Inventories
           )
         end
 
-        if params[:founditems].present?
-          params[:founditems].each do |_key, founditem_params|
+        if params[:found_items].present?
+          params[:found_items].each do |_key, founditem_params|
             founditem_desc = founditem_params[:description]
             founditem_quant = founditem_params[:quantity]
 
@@ -47,7 +47,7 @@ module Inventories
     private
 
     def inventory_params
-      params.require(:inventory).permit(:room_id, assets: {})
+      params.require(:inventory).permit(:room_id, assets: {}, found_items: {})
     end
 
     def after_create_path

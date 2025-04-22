@@ -1,8 +1,11 @@
-.d-flex
-  = render "layouts/sidebar"
+= render "layouts/sidebar"
 
-  .flex-grow-1
-    = render "layouts/navbar"
+#main-content.flex-grow-1.d-flex.flex-column{style: "min-height: 100vh;"}
+  = render "layouts/navbar"
 
-    .container-fluid.mt-4
-      = yield
+  #main.container-fluid.mt-4.flex-grow-1
+    = yield
+
+  %footer
+    .container.text-center.mt-3.mb-1
+      %span Copyright (c) 2025 Author. All Rights Reserved.

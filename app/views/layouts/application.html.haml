@@ -19,7 +19,7 @@
     = stylesheet_link_tag :app , "data-turbo-track": "reload"
     = yield :head
 
-  %body.bg-light
+  %body.bg-light.d-flex
     - if user_signed_in?
       = render template: "layouts/principal"
     - else

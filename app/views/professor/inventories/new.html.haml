@@ -1,4 +1,4 @@
-%main.container
+%section.container
   %h2 Novo Inventario
   .card
     .card-header.bg-body
@@ -56,10 +56,10 @@
             <button type="button" class="btn btn-danger remove-found-item" data-item-id="${itemCount}">-</button>
           </td>
           <td align="center">
-            <input type="text" name="founditems[${itemCount}][description]" class="form-control" style="max-width: 200px;" placeholder="Descrição do item" required>
+            <input type="text" name="found_items[${itemCount}][description]" class="form-control" style="max-width: 200px;" placeholder="Descrição do item" required>
           </td>
           <td align="center">
-            <input type="number" name="founditems[${itemCount}][quantity]" class="form-control" style= "max-width: 150px;" placeholder="Quantidade" min="0" required>
+            <input type="number" name="found_items[${itemCount}][quantity]" class="form-control" style= "max-width: 150px;" placeholder="Quantidade" min="0" required>
           </td>
           <td>
             <label>#{Time.now.strftime('%d/%m/%Y')}</label>
