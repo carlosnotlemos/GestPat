@@ -1,10 +1,26 @@
+= javascript_include_tag "input_masks", "imask", "data-turbo-track": "reload"
+
 %section.container
-  %h1 WORKSPACE
   .card.mt-4
+    .card-header.bg-dark
+      = form_with url: professor_inventarios_path, method: :get, local: true do |f|
+        .row.align-items-end
+          .col-md-3
+            .d-flex.align-items-center
+              = f.label :room_id, "Sala", class: "text-light me-2"
+              = f.select :room_id, options_for_select(@rooms.map { |room| [room.name, room.id]}, params[:room_id]),
+                {prompt: "Todas as Salas"}, class: "form-control", style: "max-width: 400px;"
+          .col-md-2
+            .d-flex.align-items-center
+              = f.label :checked_at, "Data", class: "text-light me-2"
+              = f.text_field :checked_at, value: params[:checked_at], class: "form-control me-2", placeholder: "#{Time.now.strftime('%m/%Y')}"
+          .col-md-2.ms-auto
+            .d-flex.justify-content-between
+              = f.submit "Pesquisar", class: "btn btn-light pe-2"
+              = link_to "Limpar", professor_inventarios_path, class: "btn btn-outline-light pe-2"
     .card-body
-      %h5 Inventarios do #{current_user.name}
-      %table.table.mt-4.table-hover
-        %thead.table-secondary
+      %table.table.table-hover
+        %thead
           %tr
             %th ID
             %th Nome
@@ -20,40 +36,3 @@
               %td= inventario.checked_at.strftime('%d/%m/%Y')
               %td 
                 %span.badge.bg-success Aprovado
-
-%section.container.mt-5
-  %h1 INFORMATIVOS
-  .card.mt-4
-    .card-body
-      %h5 Inventarios do #{current_user.name}
-      %table.table.mt-4.table-hover
-        %thead.table-secondary
-          %tr
-            %th ID
-            %th Nome
-            %th Sala
-            %th Data
-            %th Situação
-        %tbody
-          %tr
-            %td 1
-            %td Carlos
-            %td Sala 100
-            %td 12/04/2025
-            %td 
-              %span.badge.bg-success Aprovado
-          %tr
-            %td 1
-            %td Carlos
-            %td Sala 100
-            %td 12/04/2025
-            %td 
-              %span.badge.bg-danger Reprovado
-          %tr
-            %td 1
-            %td Carlos
-            %td Sala 100
-            %td 12/04/2025
-            %td 
-              %span.badge.bg-secondary Aguardando
-

@@ -1,7 +1,8 @@
 module Professor
   class InventoriesController < Inventories::BaseController
     def index
-      @inventories = current_user.inventories
+      @inventories = current_user.inventories.pesquisa_avancada(params).order(checked_at: :desc)
+      @rooms = Room.all
     end
 
     private
