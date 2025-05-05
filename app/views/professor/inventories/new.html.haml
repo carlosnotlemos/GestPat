@@ -1,7 +1,6 @@
 %section.container
-  %h2 Novo Inventario
-  .card
-    .card-header.bg-body
+  .card.mt-4
+    .card-header.bg-dark
       .align-items-center
         .float-end
           = form_with url: professor_novo_inventario_path, method: :get, data: { turbo_frame: "inventory_table" } do |r|
@@ -16,7 +15,7 @@
         = form_with model: @inventory, url: professor_inventarios_path, method: :post do |a|
           = a.hidden_field :room_id, value: params[:room_id]
           %table.table.table-hover.text-center.align-middle{ style: "border: 1px solid #dee2e6; border-radius: 0.25rem;" }
-            %thead.table-secondary
+            %thead
               %tr
                 %th ID
                 %th Patrimonio
@@ -41,7 +40,7 @@
           - if params[:room_id].present?
             .d-flex.justify-content-between
               %button{type: "button", id: "add-found-item", class: "btn btn-success"} + Adicionar item
-              = a.submit "Salvar", class: "btn btn-outline-secondary"
+              = a.submit "Salvar", class: "btn btn-outline-dark"
 :javascript
   document.addEventListener("DOMContentLoaded", function(){
     const addFoundItemButton = document.getElementById("add-found-item");
