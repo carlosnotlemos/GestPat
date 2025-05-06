@@ -1,0 +1,22 @@
+%section.container
+  .card.mt-4
+    .card-header.bg-dark
+      .m-4
+    .card-body
+      %table.table.table-hover
+        %thead
+          %tr
+            %th ID
+            %th Nome
+            %th Sala
+            %th Data
+            %th Situação
+        %tbody
+          - @inventories.each do |inventario|
+            %tr
+              %td= inventario.id
+              %td= inventario.user.name
+              %td= inventario.room.name
+              %td= inventario.checked_at.strftime('%d/%m/%Y')
+              %td 
+                %span.badge.bg-success Aprovado

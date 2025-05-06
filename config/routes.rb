@@ -13,7 +13,8 @@ Rails.application.routes.draw do
       post "inventarios", to: "inventories#create"
     end
 
-    namespace "ferramentaria" do
+    namespace :ferramentaria do
+      get  "inventarios", to: "inventories#index", as: :inventarios
       # resources :inventories, only: %i[ index new create ], path: "inventario"
       # resources :founditemconfirmation, only: %i[ new create ]
     end
