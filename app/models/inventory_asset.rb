@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class InventoryAsset
 class InventoryAsset < ApplicationRecord
   belongs_to :inventory
   belongs_to :asset

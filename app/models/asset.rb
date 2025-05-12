@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class Asset
 class Asset < ApplicationRecord
   has_many :inventory_assets
   has_many :inventories, through: :inventory_assets
