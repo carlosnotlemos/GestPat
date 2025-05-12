@@ -58,4 +58,4 @@ end
 
 gem "devise", "~> 4.9"
 gem "haml-rails"
-gem "psych", "5.2.3"
+gem "psych", "5.2.5"
