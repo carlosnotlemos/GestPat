@@ -3,7 +3,9 @@
   %nav.bg-dark.text-white.flex-shrink-0.p-3{ style: "width: 250px; min-height: 100%;" }
     %h4.text-center.mt-3 Gestpat v1.0
     %hr/
-    %ul.nav.nav-pills.flex-column.mb-auto.mt-4
-      - sidebar_links_for(current_user).each do |link|
-        %li.nav-item
-          = link_to link[:label], link[:path], class:"nav-link text-white"
+    - case current_user.role 
+      - when current_user.role
+        - path = "layouts/sidebar/#{current_user.role}"
+        = render path
+      - else
+        = "Usuário não encontrado"
