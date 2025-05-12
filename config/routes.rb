@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
 
@@ -18,8 +20,6 @@ Rails.application.routes.draw do
       # resources :inventories, only: %i[ index new create ], path: "inventario"
       # resources :founditemconfirmation, only: %i[ new create ]
     end
-
-
 
     # ASSISTENTE E ESTÁGIARIO APENAS VERIFICAM E ATESTAM OS INVENTÁRIOS
     # %w[assistente estagiario].each do |analist|
