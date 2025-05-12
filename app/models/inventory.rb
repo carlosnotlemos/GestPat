@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class Inventory
 class Inventory < ApplicationRecord
   has_many :inventory_assets
   has_many :assets, through: :inventory_assets
@@ -9,9 +12,14 @@ class Inventory < ApplicationRecord
   validates :checked_at, presence: true
 
   def self.pesquisa_avancada(params)
-    rooms = all
-    rooms = rooms.where(room_id: params[:room_id]) if params[:room_id].present?
-    rooms = rooms.where(checked_at: Date.parse(params[:checked_at]).at_beginning_of_month..Date.parse(params[:checked_at]).at_end_of_month) if params[:checked_at].present?
-    rooms
+    scope = all # All utilizado pois self ele retorna a classe anterior ou seja invetories
+    scope = scope.where(room_id: params[:room_id]) if params[:room_id].present?
+    if params[:checked_at].present?
+      date = Date.parse(params[:checked_at])
+      scope = scope.where(
+        checked_at: date.at_beginning_of_month..date.at_end_of_month
+      )
+    end
+    scope
   end
 end
