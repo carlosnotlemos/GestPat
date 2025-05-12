@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 module Ferramentaria
+  # Call to Inventories
   class InventoriesController < Inventories::BaseController
     def index
-      @inventories = Inventory.where(room_id: User.roles[:ferramentaria])
+      @inventories = current_user.inventories.pesquisa_avancada(params).order(checked_at: :desc)
     end
 
     private
