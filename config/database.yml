@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: root
-  password: rootpassword
+  username: postgres
+  password: postgres
   host: 127.0.0.1  # Aqui você coloca o IP da sua máquina
   port: 5432
 
@@ -11,12 +11,3 @@ development:
   <<: *default
   database: gestpat
 
-test:
-  <<: *default
-  database: gestpat_test
-
-production:
-  <<: *default
-  database: gestpat_production
-  username: root
-  password: rootpassword
