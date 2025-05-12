@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module Professor
+  # Call to Inventories
   class InventoriesController < Inventories::BaseController
     def index
       @inventories = current_user.inventories.pesquisa_avancada(params).order(checked_at: :desc)
-      @rooms = Room.all
+      @rooms = current_user.rooms
     end
 
     private
