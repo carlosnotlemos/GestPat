@@ -207,7 +207,7 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
-    psych (5.2.5)
+    psych (5.2.6)
       date
       stringio
     puma (6.6.0)
@@ -372,7 +372,7 @@ DEPENDENCIES
   kamal
   pg (~> 1.1)
   propshaft
-  psych (= 5.2.5)
+  psych (= 5.2.6)
   puma (>= 5.0)
   rails (~> 8.0.2)
   rubocop-rails-omakase
