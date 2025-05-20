@@ -1,0 +1,82 @@
+%section.container
+  .card.mt-4
+    .card-header.bg-dark
+      .align-items-center
+        .float-end
+          = form_with url: new_ferramentaria_inventory_path, method: :get, data: { turbo_frame: "inventory_ferramentaria" } do |r|
+            = select_tag :room_id,
+              options_for_select(@rooms.map { |room| [room.name, room.id] }, params[:room_id]),
+              prompt: "Selecione uma sala",
+              class: "form-select",
+              onchange: "this.form.requestSubmit();"
+
+    .card-body
+      #inventory_ferramentaria
+        = form_with model: @inventory, url: ferramentaria_inventories_path, method: :post do |a|
+          = a.hidden_field :room_id, value: params[:room_id]
+          %table.table.table-hover.text-center.align-middle{ style: "border: 1px solid #dee2e6; border-radius: 0.25rem;" }
+            %thead
+              %tr
+                %th ID
+                %th Patrimonio
+                %th Quantidade na sala
+                %th Data
+                %th Quantidade observada
+            %tbody#found-items
+              - if params[:room_id].present?
+                - @assets.each do |room_asset|
+                  %tr
+                    %td= room_asset.id
+                    %td= room_asset.asset_type.name
+                    %td= room_asset.quantity
+                    %td= room_asset.created_at.strftime('%d/%m/%Y')
+                    %td
+                      .d-flex.justify-content-center
+                        = number_field_tag "assets[#{room_asset.id}]", nil, min: 0, step: 1,
+                          class: "form-control", style: "max-width: 100px;", required: true
+              - else
+                %tr
+                  %td{ colspan: 5 , class:"text-center fw-bold"} Escolha uma sala para visualizar os ativos 
+          - if params[:room_id].present?
+            .d-flex.justify-content-between
+              %button{type: "button", id: "add-found-item", class: "btn btn-success"} + Adicionar item
+              = a.submit "Salvar", class: "btn btn-outline-dark"
+:javascript
+  document.addEventListener("DOMContentLoaded", function(){
+    const addFoundItemButton = document.getElementById("add-found-item");
+    const foundItemsContainer = document.getElementById("found-items");
+    let itemCount = 0;
+
+    addFoundItemButton.addEventListener("click", function(){
+      itemCount++;
+      const foundItemHtml = `
+        <tr id="found-item-${itemCount}">
+          <td align="center">
+            <button type="button" class="btn btn-danger remove-found-item" data-item-id="${itemCount}">-</button>
+          </td>
+          <td align="center">
+            <input type="text" name="found_items[${itemCount}][description]" class="form-control" style="max-width: 200px;" placeholder="Descrição do item" required>
+          </td>
+          <td align="center">
+            <input type="number" name="found_items[${itemCount}][quantity]" class="form-control" style= "max-width: 150px;" placeholder="Quantidade" min="0" required>
+          </td>
+          <td>
+            <label>#{Time.now.strftime('%d/%m/%Y')}</label>
+          </td>
+          <td>
+            <span class="badge bg-info">Item encontrado</span> 
+          </td>
+        </tr>
+      `;
+
+      foundItemsContainer.insertAdjacentHTML("beforeend", foundItemHtml);
+    });
+
+    foundItemsContainer.addEventListener("click", function(event){
+      if (event.target && event.target.classList.contains("remove-found-item")){
+        const itemId = event.target.dataset.itemId;
+        const itemElement = document.getElementById(`found-item-${itemId}`);
+        itemElement.remove();
+      }
+    });
+  });
