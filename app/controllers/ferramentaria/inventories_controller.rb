@@ -10,7 +10,7 @@ module Ferramentaria
     private
 
     def after_create_path
-      ferramentaria_inventarios_path
+      ferramentaria_inventories_path
     end
 
     def expected_role

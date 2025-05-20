@@ -4,7 +4,7 @@ default: &default
   pool: 5
   username: postgres
   password: postgres
-  host: 127.0.0.1  # Aqui você coloca o IP da sua máquina
+  host: 172.18.0.1  # Aqui você coloca o IP da sua máquina
   port: 5432
 
 development:

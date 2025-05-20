@@ -10,3 +10,6 @@
         "aria-controls" => "sidebarCollapse"
       }= image_tag "button-collapse-dark.png", alt: "menu", style: "width: 24px; height: 24px;"
       %span.navbar-brand.h1.align-middle= "Olá #{current_user.name}"
+    .ms-auto
+      = button_to destroy_user_session_path, method: :delete, class: "btn ms-2" do
+        = image_tag "turn_off.png", alt: "logout", style: "width: 24px; height: 24px;"

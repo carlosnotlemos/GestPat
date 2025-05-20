@@ -9,17 +9,16 @@ Rails.application.routes.draw do
     root to: "static#teste", as: :authenticated_root
 
     # PROFESSOR E FERRAMENTARIA APENAS FAZEM INVENTARIOS!
-    namespace :professor do
-      get "novo_inventario", to: "inventories#new", as: :novo_inventario
-      get "inventarios", to: "inventories#index", as: :inventarios
-      post "inventarios", to: "inventories#create"
+    %w[professor ferramentaria].each do |operation_role|
+      namespace operation_role do
+        resources :inventories, only: %i[index new create], path: "inventario"
+      end
     end
 
-    namespace :ferramentaria do
-      get  "inventarios", to: "inventories#index", as: :inventarios
-      # resources :inventories, only: %i[ index new create ], path: "inventario"
-      # resources :founditemconfirmation, only: %i[ new create ]
-    end
+    # namespace :estagiario do
+    #   resources :inventarios, controller: "inventories", only: %i[index]
+    #   resources :
+    # end
 
     # ASSISTENTE E ESTÁGIARIO APENAS VERIFICAM E ATESTAM OS INVENTÁRIOS
     # %w[assistente estagiario].each do |analist|

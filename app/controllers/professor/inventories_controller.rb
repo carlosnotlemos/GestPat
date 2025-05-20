@@ -11,7 +11,7 @@ module Professor
     private
 
     def after_create_path
-      professor_inventarios_path
+      professor_inventories_path
     end
 
     def expected_role
