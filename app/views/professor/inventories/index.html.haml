@@ -16,8 +16,6 @@
               = f.text_field :checked_at, value: params[:checked_at], class: "form-control me-2", placeholder: "#{Time.now.strftime('%m/%Y')}"
           .col-md-2
             .d-flex.gap-4
-              -# = f.submit class: "btn btn-light pe-2"
-              -# = link_to "Limpar", professor_inventarios_path, class: "btn btn-outline-light pe-2"
               = button_tag type: "submit", class: "btn btn-light" do 
                 = image_tag 'search.png', style: "width: 24px; height: 24px;"
               = link_to request.path, class: "btn btn-light" do 

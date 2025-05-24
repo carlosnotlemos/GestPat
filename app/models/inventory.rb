@@ -12,13 +12,11 @@ class Inventory < ApplicationRecord
   validates :checked_at, presence: true
 
   def self.pesquisa_avancada(params)
-    scope = all # All utilizado pois self ele retorna a classe anterior ou seja invetories
+    scope = all
     scope = scope.where(room_id: params[:room_id]) if params[:room_id].present?
     if params[:checked_at].present?
-      date = Date.parse(params[:checked_at])
-      scope = scope.where(
-        checked_at: date.at_beginning_of_month..date.at_end_of_month
-      )
+      date = Date.parse(params[:checked_at]) rescue nil
+      scope = scope.where(checked_at: date.at_beginning_of_month..date.at_end_of_month) if date.present?
     end
     scope
   end
