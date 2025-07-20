@@ -11,14 +11,14 @@ Rails.application.routes.draw do
     # PROFESSOR E FERRAMENTARIA APENAS FAZEM INVENTARIOS!
     %w[professor ferramentaria].each do |operation_role|
       namespace operation_role do
-        resources :inventories, only: %i[index new create], path: "inventario"
+        resources :inventories, only: %i[index show new create], path: "inventario"
       end
     end
 
-    # namespace :estagiario do
-    #   resources :inventarios, controller: "inventories", only: %i[index]
-    #   resources :
-    # end
+    namespace :analista do
+      resources :inventories, only: %i[index], path: "inventarios"
+      resources :check_inventories, only: %i[index show new create], path: "checar-inventario"
+    end
 
     # ASSISTENTE E ESTÁGIARIO APENAS VERIFICAM E ATESTAM OS INVENTÁRIOS
     # %w[assistente estagiario].each do |analist|

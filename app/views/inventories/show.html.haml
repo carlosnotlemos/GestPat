@@ -1,0 +1,44 @@
+%section.container
+  .card.mt-4
+    .card-header.bg-dark
+      %h3.text-light INVENTÁRIO Nº #{@inventory.id}
+    .card-body
+      .row
+        .col-md-3
+          %h5.text-dark USUÁRIO
+          %p.text-dark= @inventory.user.name
+        .col-md-3
+          %h5.text-dark SITUAÇÃO
+          %p.text-dark
+            %strong
+              %span.badge.bg-success Aprovado
+        .col-md-3
+          %h5.text-dark SALA
+          %p.text-dark= @inventory.room.name
+        .col-md-3
+          %h5.text-dark DATA
+          %p.text-dark= @inventory.checked_at.strftime('%d/%m/%Y')
+
+      %table.table.table-hover.mt-3
+        %thead
+          %tr
+            %th Nº Patrimonio
+            %th Patrimonio
+            %th Quantidade Contada
+            %th Quantidade Esperada
+            %th Observação
+        %tbody
+          - @inventory.inventory_assets.each do |item|
+            %tr
+              %td= item.asset.id
+              %td= item.asset.asset_type.name
+              %td= item.counted_quantity
+              %td= item.asset.quantity
+              %td=# item.asset.description&
+          - @inventory.found_items.each do |item_found|
+            %tr
+              %td #
+              %td= item_found.description
+              %td= item_found.quantity
+              %td #
+              %td O item está quebrado

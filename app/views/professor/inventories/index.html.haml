@@ -29,6 +29,7 @@
             %th Sala
             %th Data
             %th Situação
+            %th Visualizar
         %tbody
           - @inventories.each do |inventario|
             %tr
@@ -38,3 +39,6 @@
               %td= inventario.checked_at.strftime('%d/%m/%Y')
               %td 
                 %span.badge.bg-success Aprovado
+              %td{align: "center"}
+                = link_to professor_inventory_path(inventario), class: "btn btn-info py-1" do
+                  = image_tag 'eye-solid.svg', size: "15x15"

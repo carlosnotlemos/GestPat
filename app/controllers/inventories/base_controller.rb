@@ -6,6 +6,10 @@ module Inventories
     # Identifica quem está acessando essa pagina pela role.
     before_action :check_role
 
+    def show
+      @inventory = Inventory.find(params[:id])
+    end
+
     def new
       @inventory = Inventory.new
       rooms_load = current_user.rooms.includes(:assets)
