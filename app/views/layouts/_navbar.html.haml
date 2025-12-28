@@ -1,2 +1,187 @@
-%nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.shadow
-  %span Welcome, #{current_user.email}!
+%nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.shadow-sm.border-bottom
+  .container-fluid.px-3.px-md-4
+    / Lado esquerdo - Título e breadcrumb
+    .navbar-brand.me-3.d-none.d-sm-block
+      %span.text-muted.h6 Bem Vindo #{current_user.email}!
+    
+    / Lado direito - Itens do usuário
+    %ul.navbar-nav.ms-auto.d-flex.flex-row.align-items-center
+      
+      / Notificações
+      %li.nav-item.dropdown.mx-1
+        %a.nav-link.position-relative{href: "#", role: "button", data: { bs_toggle: "dropdown" }}
+          %i.fas.fa-bell.text-gray-600
+          %span.position-absolute.start-100.badge.rounded-pill.bg-danger{style: "top: 15px; transform: translate(-50%, 0); font-size: 0.6rem; padding: 0.2rem 0.4rem;"}
+            3
+        .dropdown-menu.dropdown-menu-end.shadow.border-0.mt-2{style: "min-width: 300px;"}
+          .dropdown-header.d-flex.justify-content-between.align-items-center
+            %span.fw-bold Notificações
+            %span.badge.bg-primary.rounded-pill 3 novas
+          .dropdown-divider
+          = link_to "#", class: "dropdown-item py-2" do
+            .d-flex.align-items-center
+              .flex-shrink-0
+                .icon-circle.bg-primary.bg-opacity-10.text-primary.rounded-circle.p-2.me-3
+                  %i.fas.fa-file-alt.fa-sm
+              .flex-grow-1
+                .small.text-gray-800 Novo relatório disponível
+                .small.text-muted Há 12 minutos
+          
+          = link_to "#", class: "dropdown-item py-2" do
+            .d-flex.align-items-center
+              .flex-shrink-0
+                .icon-circle.bg-success.bg-opacity-10.text-success.rounded-circle.p-2.me-3
+                  %i.fas.fa-check.fa-sm
+              .flex-grow-1
+                .small.text-gray-800 Tarefa concluída
+                .small.text-muted Há 1 hora
+          
+          .dropdown-divider
+          = link_to "#", class: "dropdown-item text-center text-primary small py-2" do
+            Ver todas as notificações
+            %i.fas.fa-arrow-right.ms-1
+      
+      / Mensagens
+      %li.nav-item.dropdown.mx-1.d-none.d-md-block
+        %a.nav-link.position-relative{href: "#", role: "button", data: { bs_toggle: "dropdown" }}
+          %i.fas.fa-envelope.text-gray-600
+          %span.position-absolute.start-100.badge.rounded-pill.bg-warning{style: "top: 15px; transform: translate(-50%, 0); font-size: 0.6rem; padding: 0.2rem 0.4rem;"}
+            5
+        .dropdown-menu.dropdown-menu-end.shadow.border-0.mt-2{style: "min-width: 280px;"}
+          .dropdown-header.d-flex.justify-content-between.align-items-center
+            %span.fw-bold Mensagens
+            %span.badge.bg-warning.rounded-pill 5 não lidas
+          .dropdown-divider
+          = link_to "#", class: "dropdown-item py-2" do
+            .d-flex
+              .flex-shrink-0
+                .rounded-circle.bg-primary.bg-opacity-10.text-primary.d-flex.align-items-center.justify-content-center{style: "width: 36px; height: 36px;"}
+                  %span.fw-bold JD
+              .flex-grow-1.ms-3
+                %strong João Silva
+                .small.text-muted.text-truncate{style: "max-width: 180px;"}
+                  | Precisamos conversar sobre o projeto...
+                .small.text-muted Há 30 minutos
+          
+          = link_to "#", class: "dropdown-item text-center text-primary small py-2" do
+            Ver todas as mensagens
+            %i.fas.fa-arrow-right.ms-1
+      
+      / Separador
+      %li.nav-item.mx-2.d-none.d-xl-block
+        .vr{style: "height: 24px;"}
+      
+      / Usuário
+      %li.nav-item.dropdown
+        %a.nav-link.d-flex.align-items-center{href: "#", role: "button", data: { bs_toggle: "dropdown" }}
+          .d-none.d-md-block.me-2.text-end
+            .small.text-gray-600.fw-semibold= current_user.email.split('@').first
+            .small.text-muted Administrador
+          .user-avatar.rounded-circle.bg-gradient-primary.text-white.d-flex.align-items-center.justify-content-center{style: "width: 36px; height: 36px;"}
+            %i.fas.fa-user
+          %i.fas.fa-chevron-down.small.ms-2
+        .dropdown-menu.dropdown-menu-end.shadow.border-0.mt-2
+          .dropdown-header.py-2
+            .d-flex.align-items-center
+              .user-avatar.rounded-circle.bg-gradient-primary.text-white.d-flex.align-items-center.justify-content-center.me-3{style: "width: 40px; height: 40px;"}
+                %i.fas.fa-user
+              .flex-grow-1
+                .fw-bold= current_user.email.split('@').first
+                .small.text-muted= current_user.email
+          .dropdown-divider
+          = link_to "#", class: "dropdown-item py-2 w-100" do
+            %i.fas.fa-user.me-2.text-gray-400
+            Meu Perfil
+          = link_to "#", class: "dropdown-item py-2 w-100" do
+            %i.fas.fa-cog.me-2.text-gray-400
+            Configurações
+          = link_to "#", class: "dropdown-item py-2 w-100" do
+            %i.fas.fa-chart-line.me-2.text-gray-400
+            Estatísticas
+          .dropdown-divider
+          = link_to destroy_user_session_path, method: :delete, class: "dropdown-item py-2 text-danger w-100" do
+            %i.fas.fa-sign-out-alt.me-2
+            Sair
+
+:css
+  /* Estilos do navbar */
+  .topbar {
+    height: 70px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  /* Icon circles */
+  .icon-circle {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* User avatar */
+  .user-avatar {
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    font-size: 0.9rem;
+  }
+  
+  /* Dropdowns */
+  .dropdown-menu {
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dropdown-header {
+    background-color: #f9fafb;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .dropdown-item {
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: #4e73df;
+  }
+  
+  .dropdown-item.text-danger:hover {
+    background-color: #fef2f2;
+    color: #dc3545 !important;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .topbar {
+      height: 60px;
+      padding: 0.5rem 0;
+    }
+    
+    .dropdown-menu {
+      position: fixed !important;
+      top: 60px !important;
+      left: 10px !important;
+      right: 10px !important;
+      width: auto !important;
+    }
+  }
+
+:javascript
+  // Toggle sidebar em mobile
+  document.addEventListener('turbo:load', function() {
+    // Fechar dropdowns ao clicar fora (mobile)
+    if (window.innerWidth < 768) {
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown') && !e.target.closest('.dropdown-menu')) {
+          const openDropdowns = document.querySelectorAll('.dropdown-menu.show');
+          openDropdowns.forEach(menu => {
+            menu.classList.remove('show');
+          });
+        }
+      });
+    }
+  });
