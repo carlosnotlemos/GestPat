@@ -59,16 +59,18 @@
 @media (max-width: 991.98px) {
   .sidebar {
     position: fixed;
-    left: -260px;
+    left: 0;
     top: 0;
+    transform: translateX(-100%);
     bottom: 0;
     z-index: 1050;
     box-shadow: 5px 0 25px rgba(0, 0, 0, 0.2);
     overflow-y: auto; /* ← Scroll se necessário */
+    transition: transform 0.3s ease;
   }
   
   .sidebar.active {
-    left: 0;
+    transform: translateX(0);
   }
   
   .sidebar-overlay {
