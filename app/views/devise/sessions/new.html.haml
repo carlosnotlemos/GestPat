@@ -1,0 +1,133 @@
+/ app/views/devise/sessions/new.html.haml
+.container-fluid.min-vh-100.d-flex.align-items-center.justify-content-center{ style: "background-color: #f8fafc; background-image: radial-gradient(#d1d5db 1px, transparent 1px); background-size: 20px 20px;" }
+  .row.w-100.justify-content-center
+    .col-12.col-md-8.col-lg-6.col-xl-5
+      .card.border-0.shadow-lg.rounded-4.overflow-hidden
+        .row.g-0
+          / Coluna da esquerda - Ilustração/Branding
+          .col-md-6.d-none.d-md-flex.bg-gradient-primary.text-white.p-5.flex-column.justify-content-center
+            .text-center
+              %i.fas.fa-chart-line.fa-5x.mb-4.opacity-75
+              %h2.fw-bold.mb-3 Nexa Pro
+              %p.opacity-75 Acesse sua conta para gerenciar seus dados e relatórios
+              
+              .mt-5.pt-4.border-top.border-white.border-opacity-25
+                %p.small.mb-2 Ainda não tem uma conta?
+                = link_to "Criar conta agora", new_registration_path(resource_name), class: "btn btn-outline-light btn-sm"
+          
+          / Coluna da direita - Formulário
+          .col-md-6.p-4.p-md-5
+            .text-center.mb-4.d-md-none
+              %h2.text-primary.fw-bold Dashboard Pro
+            
+            %h4.fw-bold.mb-1.text-dark Olá, bem-vindo de volta!
+            %p.text-muted.mb-4 Faça login para continuar
+            
+            = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "needs-validation", novalidate: true }) do |f|
+              / Email
+              .mb-3
+                = f.label :email, class: "form-label fw-semibold text-dark"
+                .input-group
+                  %span.input-group-text.bg-light.border-end-0
+                    %i.fas.fa-envelope.text-muted
+                  = f.email_field :email, 
+                    class: "form-control py-2 border-start-0", 
+                    placeholder: "seu@email.com", 
+                    autocomplete: "email",
+                    required: true
+                  .invalid-feedback Por favor, insira um email válido
+            
+              / Senha
+              .mb-3
+                = f.label :password, class: "form-label fw-semibold text-dark"
+                .input-group
+                  %span.input-group-text.bg-light.border-end-0
+                    %i.fas.fa-lock.text-muted
+                  = f.password_field :password, 
+                    class: "form-control py-2 border-start-0", 
+                    placeholder: "••••••••", 
+                    autocomplete: "current-password",
+                    required: true
+                  %button.btn.btn-outline-secondary.border-start-0{type: "button", id: "togglePassword"}
+                    %i.fas.fa-eye
+            
+              / Lembrar-me e Esqueci senha
+              .d-flex.justify-content-between.align-items-center.mb-4
+                - if devise_mapping.rememberable?
+                  .form-check
+                    = f.check_box :remember_me, class: "form-check-input"
+                    = f.label :remember_me, "Lembrar-me", class: "form-check-label text-muted small"
+                
+                = link_to "Esqueceu sua senha?", new_password_path(resource_name), class: "small text-primary text-decoration-none"
+              
+              / Botão de login
+              .mb-4
+                = f.submit "Entrar", class: "btn btn-primary btn-lg w-100 py-2 fw-semibold"
+                .text-center.mt-3
+                  %span.text-muted.small ou entre com
+              
+              / Login social (opcional)
+              .row.g-2.mb-4
+                .col-6
+                  %button.btn.btn-outline-dark.btn-sm.w-100.py-2{type:"button", disabled: true}
+                    %i.fab.fa-google.me-2
+                    Google
+                .col-6
+                  %button.btn.btn-outline-dark.btn-sm.w-100.py-2{type:"button", disabled: true}
+                    %i.fab.fa-microsoft.me-2
+                    Microsoft
+            
+              / Links adicionais para mobile
+              .text-center.d-md-none.mt-4.pt-3.border-top
+                %p.small.text-muted.mb-2 Ainda não tem uma conta?
+                = link_to "Criar conta agora", new_registration_path(resource_name), class: "btn btn-outline-primary btn-sm"
+                .mt-3
+                  = link_to "Voltar para a página inicial", root_path, class: "text-muted small text-decoration-none"
+
+/ CSS específico para a página de login
+:css
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+  }
+  
+  .rounded-4 {
+    border-radius: 1rem !important;
+  }
+  
+  .form-control:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+  }
+  
+  .input-group-text {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+  }
+
+/ JavaScript para mostrar/esconder senha
+:javascript
+  document.addEventListener('turbo:load', function() {
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.querySelector('#user_password');
+    
+    if (togglePassword && passwordField) {
+      togglePassword.addEventListener('click', function() {
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        this.querySelector('i').classList.toggle('fa-eye');
+        this.querySelector('i').classList.toggle('fa-eye-slash');
+      });
+    }
+    
+    // Validação do formulário
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(function(form) {
+      form.addEventListener('submit', function(event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  });
