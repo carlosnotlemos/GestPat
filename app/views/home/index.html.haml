@@ -1,3 +1,83 @@
-HOME INDEX
+= stylesheet_link_tag 'home', "data-turbo-track": "reload"
 
-= link_to "login", new_user_session_path, class: "btn btn-primary btn-sm"
+.container-fluid.p-0
+  / Hero Section
+  %section.hero-section.bg-primary.text-white.py-5.py-lg-7
+    .container
+      .row.align-items-center
+        .col-lg-6.mb-5.mb-lg-0
+          %h1.display-4.fw-bold.mb-4 Transforme seus dados em insights poderosos
+          %p.lead.mb-4.mb-lg-5
+            Nossa plataforma de dashboard oferece análises em tempo real, relatórios detalhados 
+            e ferramentas para você tomar decisões mais inteligentes para o seu negócio.
+          .d-flex.flex-wrap.gap-3
+            = link_to "Começar Agora", new_user_registration_path, class: "btn btn-light btn-lg px-4 py-3 fw-bold"
+            = link_to "Ver Demonstração", "#demo", class: "btn btn-outline-light btn-lg px-4 py-3"
+        .col-lg-6
+          .container
+            .card-body.p-4
+              = image_tag "example_layout.png", alt: "Dashboard Preview", class: "img-fluid rounded shadow-sm"
+              .text-center.mt-3
+                %p.text-light-50.mb-0.mt-2 Visualização do dashboard principal
+
+  / Features Section
+  %section.py-5.py-lg-7
+    .container
+      .text-center.mb-5.mb-lg-7
+        %h2.h1.fw-bold.mb-3 Recursos Exclusivos
+        %p.lead.text-muted Tudo que você precisa para gerenciar e analisar seus dados
+      
+      .row.g-4
+        .col-md-6.col-lg-3
+          .card.border-0.shadow-sm.h-100.hover-lift
+            .card-body.p-4.text-center
+              .icon-wrapper.bg-primary-light.text-primary.rounded-circle.p-3.mb-4.mx-auto{style: "width: 64px; height: 64px;"}
+                %i.fas.fa-chart-line.fa-2x
+              %h5.h4.fw-bold.mb-3 Análise em Tempo Real
+              %p.text-muted Monitore métricas importantes com atualizações em tempo real e gráficos interativos.
+
+        .col-md-6.col-lg-3
+          .card.border-0.shadow-sm.h-100.hover-lift
+            .card-body.p-4.text-center
+              .icon-wrapper.bg-success-light.text-success.rounded-circle.p-3.mb-4.mx-auto{style: "width: 64px; height: 64px;"}
+                %i.fas.fa-table.fa-2x
+              %h5.h4.fw-bold.mb-3 Relatórios Detalhados
+              %p.text-muted Gere relatórios personalizados com filtros avançados e exportação para múltiplos formatos.
+        
+        .col-md-6.col-lg-3
+          .card.border-0.shadow-sm.h-100.hover-lift
+            .card-body.p-4.text-center
+              .icon-wrapper.bg-warning-light.text-warning.rounded-circle.p-3.mb-4.mx-auto{style: "width: 64px; height: 64px;"}
+                %i.fas.fa-bell.fa-2x
+              %h5.h4.fw-bold.mb-3 Alertas Inteligentes
+              %p.text-muted Configure notificações automáticas para mudanças importantes nos seus indicadores.
+        
+        .col-md-6.col-lg-3
+          .card.border-0.shadow-sm.h-100.hover-lift
+            .card-body.p-4.text-center
+              .icon-wrapper.bg-info-light.text-info.rounded-circle.p-3.mb-4.mx-auto{style: "width: 64px; height: 64px;"}
+                %i.fas.fa-mobile-alt.fa-2x
+              %h5.h4.fw-bold.mb-3 Totalmente Responsivo
+              %p.text-muted Acesse seu dashboard de qualquer dispositivo, desktop, tablet ou smartphone.
+
+  / CTA Section
+  %section.bg-light.py-5.py-lg-7
+    .container
+      .row.justify-content-center
+        .col-lg-8.text-center
+          %h2.h1.fw-bold.mb-4 Pronto para começar?
+          %p.lead.text-muted.mb-5
+            Junte-se a milhares de empresas que já estão transformando seus dados em vantagem competitiva. 
+            %br
+            Experimente gratuitamente por 14 dias.
+          .d-flex.flex-column.flex-sm-row.justify-content-center.gap-3
+            = link_to "Criar Conta Gratuita", new_user_registration_path, class: "btn btn-primary btn-lg px-5"
+            = link_to "Entrar", new_user_session_path, class: "btn btn-outline-primary btn-lg px-5"
+
+  / Footer
+  %footer.bg-dark.text-white.py-4.py-lg-5
+    .container
+      .row.align-items-center
+        .col-md-6.mb-3.mb-md-0
+          %h5.h4.fw-bold.mb-2 Dashboard Pro
+          %p.text-light-50.mb-0 &copy; 2025 Todos os direitos reservados.

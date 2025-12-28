@@ -8,16 +8,9 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     // FONTAWESOME COM INTEGRITY
     %link{rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css", integrity: "sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==", crossorigin: "anonymous", referrerpolicy: "no-referrer"}
-    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
     
-  %body#page-top
-    %div#wrapper
-      / Sidebar
-      = render partial: 'layouts/sidebar'
-      %div#content-wrapper
-        %div#content
-          / Navbar
-          = render partial: 'layouts/navbar'
-          / Content
-          .container-fluid
-            = yield
+    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+
+  %body
+    = yield
+

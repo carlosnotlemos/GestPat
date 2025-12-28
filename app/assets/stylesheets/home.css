@@ -1,0 +1,45 @@
+/* Estilos para a página pública */
+.hero-section {
+  background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+}
+
+.hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.bg-primary-light {
+  background-color: rgba(78, 115, 223, 0.1);
+}
+
+.bg-success-light {
+  background-color: rgba(28, 200, 138, 0.1);
+}
+
+.bg-warning-light {
+  background-color: rgba(246, 194, 62, 0.1);
+}
+
+.bg-info-light {
+  background-color: rgba(54, 185, 204, 0.1);
+}
+
+.text-light-50 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
