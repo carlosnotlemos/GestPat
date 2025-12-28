@@ -59,3 +59,6 @@ end
 
 # Haml
 gem 'haml-rails', '~> 2.0'
+
+# Autenticação
+gem 'devise', '~> 4.9'
