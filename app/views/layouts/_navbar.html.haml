@@ -1,7 +1,9 @@
+= stylesheet_link_tag 'navbar', "data-turbo-track": "reload"
+
 %nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.shadow-sm.border-bottom
   .container-fluid.px-3.px-md-4
     / Lado esquerdo - Título e breadcrumb
-    .navbar-brand.me-3.d-none.d-sm-block
+    .navbar-brand.me-3.d-none.d-lg-block
       %span.text-muted.h6 Bem Vindo #{current_user.email}!
     
     / Lado direito - Itens do usuário
@@ -102,86 +104,3 @@
           = link_to destroy_user_session_path, method: :delete, class: "dropdown-item py-2 text-danger w-100" do
             %i.fas.fa-sign-out-alt.me-2
             Sair
-
-:css
-  /* Estilos do navbar */
-  .topbar {
-    height: 70px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  
-  /* Icon circles */
-  .icon-circle {
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* User avatar */
-  .user-avatar {
-    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
-    font-size: 0.9rem;
-  }
-  
-  /* Dropdowns */
-  .dropdown-menu {
-    border-radius: 10px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dropdown-header {
-    background-color: #f9fafb;
-    border-radius: 10px 10px 0 0;
-  }
-  
-  .dropdown-item {
-    border-radius: 6px;
-    transition: all 0.2s;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #f3f4f6;
-    color: #4e73df;
-  }
-  
-  .dropdown-item.text-danger:hover {
-    background-color: #fef2f2;
-    color: #dc3545 !important;
-  }
-  
-  /* Responsividade */
-  @media (max-width: 768px) {
-    .topbar {
-      height: 60px;
-      padding: 0.5rem 0;
-    }
-    
-    .dropdown-menu {
-      position: fixed !important;
-      top: 60px !important;
-      left: 10px !important;
-      right: 10px !important;
-      width: auto !important;
-    }
-  }
-
-:javascript
-  // Toggle sidebar em mobile
-  document.addEventListener('turbo:load', function() {
-    // Fechar dropdowns ao clicar fora (mobile)
-    if (window.innerWidth < 768) {
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.dropdown') && !e.target.closest('.dropdown-menu')) {
-          const openDropdowns = document.querySelectorAll('.dropdown-menu.show');
-          openDropdowns.forEach(menu => {
-            menu.classList.remove('show');
-          });
-        }
-      });
-    }
-  });

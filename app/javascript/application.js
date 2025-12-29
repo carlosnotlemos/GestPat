@@ -12,3 +12,4 @@ import './sb_admin/sb-admin-2.min'
 
 // COMPONENTS
 import './components/sidebar'
+import './components/navbar'

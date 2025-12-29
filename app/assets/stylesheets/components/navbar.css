@@ -1,0 +1,54 @@
+/* Estilos do navbar */
+.topbar {
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* User avatar */
+.user-avatar {
+  background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+  font-size: 0.9rem;
+}
+
+/* Dropdowns */
+.dropdown-menu {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-header {
+  background-color: #f9fafb;
+  border-radius: 10px 10px 0 0;
+}
+
+.dropdown-item {
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f3f4f6;
+  color: #4e73df;
+}
+
+.dropdown-item.text-danger:hover {
+  background-color: #fef2f2;
+  color: #dc3545 !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .topbar {
+    height: 60px;
+    padding: 0.5rem 0;
+  }
+  
+  .dropdown-menu {
+    position: fixed !important;
+    top: 60px !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+  }
+}
