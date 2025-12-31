@@ -4,7 +4,7 @@ class CreateAssets < ActiveRecord::Migration[7.1]
       t.references :tenant, null: false, foreign_key: true
       t.references :asset_type, null: false, foreign_key: true
       t.references :location, null: false, foreign_key: true
-      t.references :responsible_user, null: false, foreign_key: { to_table: :users }
+      t.references :responsible_user, foreign_key: { to_table: :users }
       t.string :identifier, null: false
       t.string :serial_number
       t.integer :status, null: false, default: 0

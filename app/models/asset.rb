@@ -3,7 +3,7 @@ class Asset < ApplicationRecord
   belongs_to :tenant
   belongs_to :asset_type
   belongs_to :location
-  belongs_to :responsible_user, class_name: 'User', foreign_key: :responsible_user_id
+  belongs_to :responsible_user, class_name: 'User', foreign_key: :responsible_user_id, optional: true
 
   #has_many
   has_many :asset_responsibilities

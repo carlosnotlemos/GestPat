@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_31_032050) do
     t.bigint "tenant_id", null: false
     t.bigint "asset_type_id", null: false
     t.bigint "location_id", null: false
-    t.bigint "responsible_user_id", null: false
+    t.bigint "responsible_user_id"
     t.string "identifier", null: false
     t.string "serial_number"
     t.integer "status", default: 0, null: false
