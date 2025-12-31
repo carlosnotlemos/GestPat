@@ -1,0 +1,28 @@
+- if resource.errors.any?
+  .toast-container.position-fixed.top-0.end-0.p-3{style: "z-index: 1050;"}
+    .toast.show.border-0.shadow-lg.rounded-3.overflow-hidden.animate__animated.animate__fadeInDown{role: "alert", "aria-live": "assertive", "aria-atomic": "true", style: "background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(185, 28, 28, 0.05) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(239, 68, 68, 0.3);"}
+      .d-flex.align-items-center.p-3
+        .flex-shrink-0
+          .rounded-circle.d-flex.align-items-center.justify-content-center{style: "width: 40px; height: 40px; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);"}
+            %i.fas.fa-exclamation.text-white
+        
+        .flex-grow-1.ms-3
+          %h6.mb-1.text-gray-800.fw-semibold.small.uppercase.tracking-wide{style: "letter-spacing: 0.05em; font-size: 0.75rem; color: #dc2626;"}
+            Ops! Tivemos um problema
+          %p.mb-0.text-gray-700= resource.errors.full_messages.first
+        
+        .flex-shrink-0.ms-3
+          %button.btn.btn-close{"data-bs-dismiss": "toast", "aria-label": "Close", type: "button", style: "filter: brightness(0) saturate(100%) invert(25%) sepia(55%) saturate(2500%) hue-rotate(340deg) brightness(90%) contrast(90%);"}
+
+:css
+  .toast {
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
+  }
+  
+  .toast:hover {
+    transform: translateX(-4px);
+    box-shadow: 0 12px 40px rgba(239, 68, 68, 0.15) !important;
+    border-color: rgba(239, 68, 68, 0.4) !important;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(185, 28, 28, 0.08) 100%);
+  }

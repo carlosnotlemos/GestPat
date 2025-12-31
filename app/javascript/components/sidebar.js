@@ -5,6 +5,9 @@ document.addEventListener('turbo:load', function() {
   const sidebarOverlay = document.querySelector('.sidebar-overlay');
   const closeSidebarBtn = document.querySelector('.btn-close-sidebar');
   
+  // Case de Segurança
+  if (!sidebar) return;
+  
   // Abrir sidebar
   if (sidebarToggle) {
     sidebarToggle.addEventListener('click', function() {
