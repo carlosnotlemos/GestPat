@@ -5,9 +5,9 @@ class Inventory < ApplicationRecord
   belongs_to :location
 
   # has_many
-  has_many :found_items
+  has_many :found_assets
   has_many :inventory_assets
-  has_many :assets, thorugh: :inventory_assets
+  has_many :assets, through: :inventory_assets
   
   # validations
   validates :checked_at, presence: true
