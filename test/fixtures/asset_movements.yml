@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  asset: one
+  from_location: one
+  to_location: one
+  from_user: one
+  to_user: one
+  status: 1
+  moved_at: 2025-12-30 22:49:33
+
+two:
+  asset: two
+  from_location: two
+  to_location: two
+  from_user: two
+  to_user: two
+  status: 1
+  moved_at: 2025-12-30 22:49:33

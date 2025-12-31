@@ -60,5 +60,8 @@ end
 # Haml
 gem 'haml-rails', '~> 2.0'
 
-# Autenticação
+# Auth
 gem 'devise', '~> 4.9'
+
+# Beatiful Console Visualization 
+gem 'amazing_print', '~> 2.0'

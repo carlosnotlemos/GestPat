@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  asset: one
+  assigned_at: 2025-12-30 22:21:02
+  removed_at: 2025-12-30 22:21:02
+
+two:
+  user: two
+  asset: two
+  assigned_at: 2025-12-30 22:21:02
+  removed_at: 2025-12-30 22:21:02
