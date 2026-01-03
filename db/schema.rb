@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_03_010844) do
+ActiveRecord::Schema[7.1].define(version: 2026_01_03_155650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -130,6 +130,18 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_03_010844) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_locations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "location_id", null: false
+    t.bigint "tenant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_user_locations_on_location_id"
+    t.index ["tenant_id"], name: "index_user_locations_on_tenant_id"
+    t.index ["user_id", "location_id", "tenant_id"], name: "index_user_locations_on_user_id_and_location_id_and_tenant_id", unique: true
+    t.index ["user_id"], name: "index_user_locations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -171,5 +183,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_03_010844) do
   add_foreign_key "inventory_assets", "inventories"
   add_foreign_key "locations", "locations", column: "parent_id"
   add_foreign_key "locations", "tenants"
+  add_foreign_key "user_locations", "locations"
+  add_foreign_key "user_locations", "tenants"
+  add_foreign_key "user_locations", "users"
   add_foreign_key "users", "tenants"
 end
