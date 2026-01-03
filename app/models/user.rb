@@ -13,4 +13,11 @@ class User < ApplicationRecord
 
   # validations
   validates :email, :name, :role, presence: true
+
+  enum role: {
+    viewer: 0,
+    operator: 1,
+    manager: 2,
+    admin: 3
+  }
 end

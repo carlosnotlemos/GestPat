@@ -1,10 +1,10 @@
-= stylesheet_link_tag 'navbar', "data-turbo-track": "reload"
+= stylesheet_link_tag 'components/navbar', "data-turbo-track": "reload"
 
 %nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.shadow-sm.border-bottom
   .container-fluid.px-3.px-md-4
     / Lado esquerdo - Título e breadcrumb
     .navbar-brand.me-3.d-none.d-lg-block
-      %span.text-muted.h6 Bem Vindo #{current_user.email}!
+      %span.text-muted.h6 Bem Vindo #{current_user.name.titleize}!
     
     / Lado direito - Itens do usuário
     %ul.navbar-nav.ms-auto.d-flex.flex-row.align-items-center
@@ -24,7 +24,7 @@
             .d-flex.align-items-center
               .flex-shrink-0
                 .icon-circle.bg-primary.bg-opacity-10.text-primary.rounded-circle.p-2.me-3
-                  %i.fas.fa-file-alt.fa-sm
+                  %i.fas.fa-file-alt.fa-lg.text-dark
               .flex-grow-1
                 .small.text-gray-800 Novo relatório disponível
                 .small.text-muted Há 12 minutos
@@ -33,7 +33,7 @@
             .d-flex.align-items-center
               .flex-shrink-0
                 .icon-circle.bg-success.bg-opacity-10.text-success.rounded-circle.p-2.me-3
-                  %i.fas.fa-check.fa-sm
+                  %i.fas.fa-check.fa-lg.text-dark
               .flex-grow-1
                 .small.text-gray-800 Tarefa concluída
                 .small.text-muted Há 1 hora
@@ -44,7 +44,7 @@
             %i.fas.fa-arrow-right.ms-1
       
       / Mensagens
-      %li.nav-item.dropdown.mx-1.d-none.d-md-block
+      %li.nav-item.dropdown.mx-1
         %a.nav-link.position-relative{href: "#", role: "button", data: { bs_toggle: "dropdown" }}
           %i.fas.fa-envelope.text-gray-600
           %span.position-absolute.start-100.badge.rounded-pill.bg-warning{style: "top: 15px; transform: translate(-50%, 0); font-size: 0.6rem; padding: 0.2rem 0.4rem;"}
@@ -57,8 +57,8 @@
           = link_to "#", class: "dropdown-item py-2" do
             .d-flex
               .flex-shrink-0
-                .rounded-circle.bg-primary.bg-opacity-10.text-primary.d-flex.align-items-center.justify-content-center{style: "width: 36px; height: 36px;"}
-                  %span.fw-bold JD
+                .rounded-circle.bg-primary.d-flex.align-items-center.justify-content-center{style: "width: 36px; height: 36px;"}
+                  %span.fw-bold.text-dark JD
               .flex-grow-1.ms-3
                 %strong João Silva
                 .small.text-muted.text-truncate{style: "max-width: 180px;"}
@@ -77,7 +77,7 @@
       %li.nav-item.dropdown
         %a.nav-link.d-flex.align-items-center{href: "#", role: "button", data: { bs_toggle: "dropdown" }}
           .d-none.d-md-block.me-2.text-end
-            .small.text-gray-600.fw-semibold= current_user.email.split('@').first
+            .small.text-gray-600.fw-semibold= current_user.name.split(' ').first
             .small.text-muted Administrador
           .user-avatar.rounded-circle.bg-gradient-primary.text-white.d-flex.align-items-center.justify-content-center{style: "width: 36px; height: 36px;"}
             %i.fas.fa-user

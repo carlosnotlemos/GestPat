@@ -9,6 +9,4 @@ class Inventory < ApplicationRecord
   has_many :inventory_assets
   has_many :assets, through: :inventory_assets
   
-  # validations
-  validates :checked_at, presence: true
 end

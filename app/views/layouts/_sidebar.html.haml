@@ -1,4 +1,4 @@
-= stylesheet_link_tag 'sidebar', "data-turbo-track": "reload"
+= stylesheet_link_tag 'components/sidebar', "data-turbo-track": "reload"
 
 / Overlay para mobile (fora do sidebar)
 .sidebar-overlay
@@ -25,10 +25,18 @@
             %span Dashboard
         
         %li.nav-item
-          = link_to "#", class: "nav-link text-white py-3 px-4 d-flex w-100 align-items-center" do
-            %i.fas.fa-fw.fa-chart-bar.me-3
-            %span Analytics
-            %span.badge.bg-info.rounded-pill.ms-auto 3
+          .sidebar-dropdown
+            %a.nav-link.text-white.py-3.px-4.d-flex.w-100.align-items-center{"data-bs-toggle" => "collapse", "href" => "#inventorySubmenu", "role" => "button", "aria-expanded" => "false", "aria-controls" => "inventorySubmenu"}
+              %i.fas.fa-fw.fa-chart-bar.me-3
+              %span Inventory
+              %i.fas.fa-chevron-down.ms-auto
+
+            %div.collapse#inventorySubmenu
+              %ul.nav.flex-column.ms-3
+                %li.nav-item
+                  = link_to "All Inventories", inventories_path, class: "nav-link text-white py-2 px-4"
+                %li.nav-item
+                  = link_to "New Inventory", new_inventory_path, class: "nav-link text-white py-2 px-4"
         
         %li.nav-item
           = link_to "#", class: "nav-link text-white py-3 px-4 d-flex w-100 align-items-center" do
@@ -40,7 +48,7 @@
             %i.fas.fa-fw.fa-cogs.me-3
             %span Settings
 
-        %li.nav-item.mt-5
+        %li.nav-item.mt-auto
           %hr.bg-light
           = button_to destroy_user_session_path, method: :delete, 
             class: "nav-link logout-simple py-3 px-4 d-flex w-100 align-items-center rounded" do
