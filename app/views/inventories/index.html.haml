@@ -1,30 +1,28 @@
 .card.shadow-sm.border-0
-  .card-body
-    .d-flex.justify-content-between.align-items-center.mb-4
-      %h6.mb-0.text-gray-800
-        %i.fas.fa-box-open.me-2
-        | Inventários Realizados
+  .card-header.py-3.bg-primary
+    %span.d-flex.justify-content-start.align-items-center.text-white
+      %i.fas.fa-box-open.me-2
+      %h5.m-0.font-weight-bold | Inventários
 
+  .card-body
     .table-responsive
       %table.table.table-striped
         %thead
           %tr
-            %th Inventário
+            %th Realizado em
             %th Local
-            %th Itens
-            %th Status
+            %th Itens 
+            %th Itens Encontrados
             %th Progresso
         %tbody
           %tr
             %td
-              .fw-bold Trimestral Q2
-              .small.text-muted Realizado em: 01/06/2024
+              .fw-bold 01/06/2024
+              .small.text-muted # 125
             %td Armazém Central
             %td 128
+            %td 1
             %td
               %span.badge.bg-success
                 %i.fas.fa-spinner.fa-spin.me-1
                 Em Andamento
-            %td
-              .progress{style: "height: 6px"}
-                .progress-bar{style: "width: 65%"}
