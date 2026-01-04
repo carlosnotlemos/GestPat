@@ -15,9 +15,8 @@ class User < ApplicationRecord
   validates :email, :name, :role, presence: true
 
   enum role: {
-    viewer: 0,
-    operator: 1,
-    manager: 2,
-    admin: 3
+    operator: 0,
+    manager: 1,
+    admin: 2
   }
 end

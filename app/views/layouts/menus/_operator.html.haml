@@ -1,0 +1,18 @@
+%li.nav-item
+  = link_to root_path, class: "nav-link text-white py-3 px-4 d-flex w-100 align-items-center active-item" do
+    %i.fas.fa-fw.fa-tachometer-alt.me-3
+    %span Dashboard
+
+%li.nav-item
+  .sidebar-dropdown
+    %a.nav-link.text-white.py-3.px-4.d-flex.w-100.align-items-center{"data-bs-toggle" => "collapse", "href" => "#inventorySubmenu", "role" => "button", "aria-expanded" => "false", "aria-controls" => "inventorySubmenu"}
+      %i.fas.fa-fw.fa-chart-bar.me-3
+      %span Inventory
+      %i.fas.fa-chevron-down.ms-auto
+
+    %div.collapse#inventorySubmenu
+      %ul.nav.flex-column.ms-3
+        %li.nav-item
+          = link_to "All Inventories", inventories_path, class: "nav-link text-white py-2 px-4"
+        %li.nav-item
+          = link_to "New Inventory", new_inventory_path, class: "nav-link text-white py-2 px-4"
