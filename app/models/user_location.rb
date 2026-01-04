@@ -6,6 +6,10 @@ class UserLocation < ApplicationRecord
 
   # validations
   validate :same_tenant
+  validates :user_id, uniqueness: {
+    scope: [:location_id, :tenant_id],
+    message: 'já está associado a essa localização neste tenant'
+  }
 
   private 
 

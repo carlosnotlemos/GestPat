@@ -5,6 +5,8 @@ class Location < ApplicationRecord
 
   # has_many
   has_many :children, class_name: "Location", foreign_key: :parent_id
+  has_many :user_locations
+  has_many :users, through: :user_locations
 
   # validations
   validates :name, :kind, presence: true
