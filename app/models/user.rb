@@ -12,9 +12,11 @@ class User < ApplicationRecord
   has_many :responsible_assets, through: :asset_responsibilities, source: :asset
   has_many :user_locations
   has_many :locations, through: :user_locations
-
+  
   # validations
+  VALID_EMAIL_REGEX = /\A[^@\s]+@[^@\s]+\.[^@\s]+\z/
   validates :email, :name, :role, presence: true
+  validates :email, format: {with: VALID_EMAIL_REGEX }
 
   enum role: {
     operator: 0,
